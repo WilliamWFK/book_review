@@ -1,0 +1,22 @@
+#BlueJ class context
+comment0.target=BookReview
+comment0.text=\ \r\n\ Write\ a\ description\ of\ class\ BookReview\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=
+comment1.target=BookReview()
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ BookReview\ \r\n
+comment2.params=args
+comment2.target=void\ main(java.lang.String[])
+comment2.text=\r\n\ Main\ routine\r\n\r\n
+comment3.params=
+comment3.target=void\ addBook()
+comment3.text=\r\n\ Adds\ book,\ requires\ field\ bookName,\ bookAuthor,\ bookGenre\r\n\ \r\n
+comment4.params=author
+comment4.target=void\ setBookAuthor(java.lang.String)
+comment4.text=\r\n\ \r\n
+comment5.params=name
+comment5.target=void\ setBookName(java.lang.String)
+comment5.text=\r\n\ \r\n
+comment6.params=genre
+comment6.target=void\ setBookGenre(java.lang.String)
+comment6.text=\r\n\ \r\n
+numComments=7
