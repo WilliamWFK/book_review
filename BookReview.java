@@ -15,12 +15,13 @@ import java.util.ArrayList;
  * @author (your name)
  * @version (a version number or a date)
  */
-public class BookReview extends Book{
+public class BookReview{
     
     private String bookAuthor,bookName,bookGenre; // variables for book name
     ArrayList<Book> books = new ArrayList<Book>();
     private int bookTotal = 0;
     public static final int SPACING = 100;
+    
     
     /**
      * Constructor for objects of class BookReview 
@@ -40,23 +41,29 @@ public class BookReview extends Book{
         BookReview br = new BookReview();
         UI.addButton("Quit", UI::quit); 
         UI.addButton("Add Book", br::addBook);
-        UI.addTextField("Book Name", br::setBookName);
-        UI.addTextField("Book Author", br::setBookAuthor);
-        UI.addTextField("Book Genre", br::setBookGenre);
+        
+        // UI.addTextField("Book Name", br::setBookName);
+        // UI.addTextField("Book Author", br::setBookAuthor);
+        // UI.addTextField("Book Genre", br::setBookGenre);
         // UI.setKeyListener(br::test);
     }
     
     /**
+     * Adds book, requires field bookName, bookAuthor, bookGenre
      * 
      */
     
     public void addBook(){
+        setBookName(UI.askString("Enter the title of the book: "));
+        setBookAuthor(UI.askString("Enter the author of the book: "));
+        setBookGenre(UI.askString("Enter the genre of the book: "));
         books.add(new Book(bookName, bookAuthor, bookGenre));
         UI.println(bookName + "has been sucessfully added!");
         
         books.get(bookTotal).draw(SPACING * bookTotal, SPACING/4);
         bookTotal += 1;
-        UI.println(books);
+        
+        
     }
     
     /**
@@ -64,7 +71,7 @@ public class BookReview extends Book{
      */
     public void setBookAuthor(String author){
         this.bookAuthor = author;
-        UI.println("Author set!");
+        
     }
     
     /**
@@ -72,7 +79,7 @@ public class BookReview extends Book{
      */
     public void setBookName(String name){
         this.bookName = name;
-        UI.println("Name set!");
+        
     }
     
     /**
@@ -80,7 +87,7 @@ public class BookReview extends Book{
      */
     public void setBookGenre(String genre){
         this.bookGenre = genre;
-        UI.println("Genre set!");
+        
     }
 }
 

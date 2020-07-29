@@ -14,7 +14,7 @@ import java.awt.Color;
  * @author (your name)
  * @version (a version number or a date)
  */
-public class Book extends BookReview{
+public class Book{
     // fields for book details
     String bookGenre,bookAuthor,bookName; 
     public static final double HEIGHT =75;
