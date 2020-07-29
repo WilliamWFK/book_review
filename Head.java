@@ -11,12 +11,12 @@ import java.io.*;
 import java.awt.Color;
 
 
-/** <description of class UserInterface>
+/** <description of class Head>
  */
-public class UserInterface{
+public class Head{
 
     /**      */
-    public UserInterface(){
+    public Head(){
     UI.initialise();
     UI.addButton("Quit", UI::quit);
     }
@@ -24,7 +24,7 @@ public class UserInterface{
 
 
     public static void main(String[] args){
-        UserInterface obj = new UserInterface();
+        Head obj = new Head();
     }
 
 }
