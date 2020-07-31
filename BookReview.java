@@ -8,6 +8,7 @@ import java.util.*;
 import java.io.*;
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /** 
  * Write a description of class BookReview here.
@@ -19,6 +20,7 @@ public class BookReview{
     
     private String bookAuthor,bookName,bookGenre; // variables for book name
     ArrayList<Book> books = new ArrayList<Book>();
+    Map<String, Book> bookMap = new TreeMap<String,Book>();
     private int bookTotal = 0;
     public static final int SPACING = 100;
     
@@ -57,10 +59,11 @@ public class BookReview{
         setBookName(UI.askString("Enter the title of the book: "));
         setBookAuthor(UI.askString("Enter the author of the book: "));
         setBookGenre(UI.askString("Enter the genre of the book: "));
-        books.add(new Book(bookName, bookAuthor, bookGenre));
+        //books.add(new Book(bookName, bookAuthor, bookGenre));
+        bookMap.put(bookName, new Book(bookName, bookAuthor, bookGenre));
         UI.println(bookName + "has been sucessfully added!");
         
-        books.get(bookTotal).draw(SPACING * bookTotal, SPACING/4);
+        bookMap.get(bookTotal).draw(SPACING * bookTotal, SPACING/4);
         bookTotal += 1;
         
         
