@@ -63,7 +63,7 @@ public class BookReview{
         bookMap.put(bookName, new Book(bookName, bookAuthor, bookGenre));
         UI.println(bookName + "has been sucessfully added!");
         
-        bookMap.get(bookTotal).draw(SPACING * bookTotal, SPACING/4);
+        bookMap.get(bookName).draw(SPACING * bookTotal, SPACING/4);
         bookTotal += 1;
         
         
