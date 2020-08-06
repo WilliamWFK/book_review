@@ -18,11 +18,11 @@ import java.util.HashMap;
  */
 public class BookReview{
     
-    private String bookAuthor,bookName,bookGenre; // variables for book name
+    public String bookAuthor,bookName,bookGenre; // variables for book name
     ArrayList<Book> books = new ArrayList<Book>();
     Map<String, Book> bookMap = new TreeMap<String,Book>();
     private int bookTotal = 0;
-    public static final int SPACING = 100;
+    
     
     
     /**
@@ -31,6 +31,7 @@ public class BookReview{
     public BookReview(){
     UI.initialise();
     
+    
     }
 
 
@@ -38,17 +39,21 @@ public class BookReview{
      * Main routine
      *
      */
-    public static void main(String[] args){
+    public static void main(){
         
         BookReview br = new BookReview();
         UI.addButton("Quit", UI::quit); 
         UI.addButton("Add Book", br::addBook);
+        UI.setMouseListener(br::manageMouse);
+        UI.setDivider(0.4);
         
         // UI.addTextField("Book Name", br::setBookName);
         // UI.addTextField("Book Author", br::setBookAuthor);
         // UI.addTextField("Book Genre", br::setBookGenre);
         // UI.setKeyListener(br::test);
     }
+    
+   
     
     /**
      * Adds book, requires field bookName, bookAuthor, bookGenre
@@ -62,8 +67,8 @@ public class BookReview{
         //books.add(new Book(bookName, bookAuthor, bookGenre));
         bookMap.put(bookName, new Book(bookName, bookAuthor, bookGenre));
         UI.println(bookName + "has been sucessfully added!");
-        
-        bookMap.get(bookName).draw(SPACING * bookTotal, SPACING/4);
+       
+        bookMap.get(bookName).draw( bookTotal);
         bookTotal += 1;
         
         
@@ -91,6 +96,22 @@ public class BookReview{
     public void setBookGenre(String genre){
         this.bookGenre = genre;
         
+    }
+    
+    /**
+     * 
+     */
+    public void manageMouse (String action, double x, double y) {
+        if(action.equals("clicked")) {
+            
+            for (Map.Entry<String, Book> entry : bookMap.entrySet())
+            {
+                // if (this.bookMap[i].onBook(x,y) == true) {
+                    // bookMap[i].bark();
+                // }
+                System.out.println(entry.getKey() + "/" + entry.getValue());
+            }
+        }
     }
 }
 

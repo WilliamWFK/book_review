@@ -20,6 +20,9 @@ public class Book{
     public static final double HEIGHT =75;
     public static final double WIDTH = 75;
     public static final double WORDHEIGHT = 20;
+    public static final double SPACING = 100;
+    public static final double BUTTONHEIGHT =50;
+    public static final double BUTTONWIDTH = 37.5;
     
     public static double x, y;
     
@@ -32,13 +35,25 @@ public class Book{
         bookGenre = genre;
     }
     
-    public void draw(double xSpacing,double ySpacing) {
-        UI.setColor(Color.black);
+    public void draw(int bookTotal) {
         UI.setLineWidth(3);
+        int rows = bookTotal/4;
+        double ySpacing = rows * (HEIGHT + 50);
+        double xSpacing = (bookTotal - (rows * 4)) * SPACING;
+      
+        
+        // Green Button
+        UI.setColor(Color.green);
+        UI.drawRect(HEIGHT+xSpacing+BUTTONWIDTH+1.5,BUTTONHEIGHT+ySpacing,BUTTONWIDTH,(BUTTONHEIGHT-28));
+        // Red Button
+        UI.setColor(Color.red);
+        UI.drawRect(HEIGHT+xSpacing,BUTTONHEIGHT+ySpacing,BUTTONWIDTH-1.5,(BUTTONHEIGHT-28));
+        
+        UI.setColor(Color.black);
         UI.drawRect(HEIGHT+xSpacing,HEIGHT+ySpacing,HEIGHT,HEIGHT);
-        // UI.drawRect(xSpacing , HEIGHT + xSpacing,ySpacing,WIDTH + ySpacing);
         UI.drawString(bookName, HEIGHT+xSpacing+10, HEIGHT+ySpacing+WORDHEIGHT);
         UI.drawString(bookAuthor, HEIGHT+xSpacing+10, HEIGHT+ySpacing+WORDHEIGHT*2);
+        
        
     }
 
