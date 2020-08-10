@@ -106,10 +106,11 @@ public class BookReview{
             
             for (Map.Entry<String, Book> entry : bookMap.entrySet())
             {
-                // if (this.bookMap[i].onBook(x,y) == true) {
-                    // bookMap[i].bark();
-                // }
-                System.out.println(entry.getKey() + "/" + entry.getValue());
+               String key = entry.getKey();
+               Object value = entry.getValue();
+               if (entry.getValue().onButton(x,y) == true) {
+                   entry.getValue().placeholder();
+                }
             }
         }
     }
