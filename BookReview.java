@@ -61,15 +61,39 @@ public class BookReview{
      */
     
     public void addBook(){
+        for (Map.Entry<String, Book> entry : bookMap.entrySet())
+            {
+               UI.println("Before");
+               String key = entry.getKey();
+               Book value = entry.getValue();
+               
+               value.placeholder();
+               
+               //UI.println(value.placeholder());
+            }
         setBookName(UI.askString("Enter the title of the book: "));
         setBookAuthor(UI.askString("Enter the author of the book: "));
         setBookGenre(UI.askString("Enter the genre of the book: "));
-        //books.add(new Book(bookName, bookAuthor, bookGenre));
-        bookMap.put(bookName, new Book(bookName, bookAuthor, bookGenre));
+        //books.add(new Book(bookName, bookAuthor, bookGenre))
+        bookMap.put(bookName, new Book(bookName, bookAuthor, bookGenre, bookTotal));
         UI.println(bookName + "has been sucessfully added!");
-       
-        bookMap.get(bookName).draw( bookTotal);
+        UI.println(bookMap);
+        bookMap.get(bookName).draw();
         bookTotal += 1;
+        
+        for (Map.Entry<String, Book> entry : bookMap.entrySet())
+            {
+               UI.println("After");
+               String key = entry.getKey();
+               Book value = entry.getValue();
+               
+               value.placeholder();
+               
+               //UI.println(value.placeholder());
+            }
+        
+        
+        
         
         
     }
@@ -107,10 +131,11 @@ public class BookReview{
             for (Map.Entry<String, Book> entry : bookMap.entrySet())
             {
                String key = entry.getKey();
-               Object value = entry.getValue();
-               if (entry.getValue().onButton(x,y) == true) {
-                   entry.getValue().placeholder();
+               Book value = entry.getValue();
+               if (value.onButton(x,y) == true) {
+                   value.placeholder();
                 }
+               //UI.println(value.placeholder());
             }
         }
     }

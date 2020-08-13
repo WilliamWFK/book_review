@@ -1,13 +1,15 @@
 #BlueJ class context
 comment0.target=Book
 comment0.text=\ \r\n\ Write\ a\ description\ of\ class\ Book\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
-comment1.params=name\ author\ genre
-comment1.target=Book(java.lang.String,\ java.lang.String,\ java.lang.String)
+comment1.params=name\ author\ genre\ bookNumber
+comment1.target=Book(java.lang.String,\ java.lang.String,\ java.lang.String,\ int)
 comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Book\ \r\n
-comment2.params=bookTotal
-comment2.target=void\ draw(int)
+comment2.params=
+comment2.target=void\ draw()
+comment2.text=\r\n\ \ Draws\ the\ book\ object,\ takes\ in\ number\ of\ existing\ books\ as\ a\ parameter\r\n
 comment3.params=x\ y
 comment3.target=boolean\ onButton(double,\ double)
+comment3.text=\r\n\ \ Checks\ to\ see\ if\ mouse\ is\ on\ a\ book\ object\r\n
 comment4.params=
-comment4.target=void\ placeholder()
+comment4.target=java.lang.String\ placeholder()
 numComments=5
