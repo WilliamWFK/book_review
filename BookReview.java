@@ -20,7 +20,7 @@ public class BookReview{
     
     public String bookAuthor,bookName,bookGenre; // variables for book name
     ArrayList<Book> books = new ArrayList<Book>();
-    Map<String, Book> bookMap = new TreeMap<String,Book>();
+    HashMap<String, Book> bookMap = new HashMap<String,Book>();
     private int bookTotal = 0;
     
     
@@ -29,7 +29,7 @@ public class BookReview{
      * Constructor for objects of class BookReview 
      */
     public BookReview(){
-    UI.initialise();
+        UI.initialise();
     
     
     }
@@ -45,7 +45,9 @@ public class BookReview{
         UI.addButton("Quit", UI::quit); 
         UI.addButton("Add Book", br::addBook);
         UI.setMouseListener(br::manageMouse);
-        UI.setDivider(0.4);
+        UI.setDivider(1);
+        Button like = new Button(true);
+        Button dislike = new Button(false);
         
         // UI.addTextField("Book Name", br::setBookName);
         // UI.addTextField("Book Author", br::setBookAuthor);
@@ -61,36 +63,16 @@ public class BookReview{
      */
     
     public void addBook(){
-        for (Map.Entry<String, Book> entry : bookMap.entrySet())
-            {
-               UI.println("Before");
-               String key = entry.getKey();
-               Book value = entry.getValue();
-               
-               value.placeholder();
-               
-               //UI.println(value.placeholder());
-            }
+       
         setBookName(UI.askString("Enter the title of the book: "));
         setBookAuthor(UI.askString("Enter the author of the book: "));
         setBookGenre(UI.askString("Enter the genre of the book: "));
         //books.add(new Book(bookName, bookAuthor, bookGenre))
-        bookMap.put(bookName, new Book(bookName, bookAuthor, bookGenre, bookTotal));
+        Book book = new Book(bookName, bookAuthor, bookGenre, bookTotal);
+        bookMap.put(bookName, book);
         UI.println(bookName + "has been sucessfully added!");
-        UI.println(bookMap);
-        bookMap.get(bookName).draw();
         bookTotal += 1;
-        
-        for (Map.Entry<String, Book> entry : bookMap.entrySet())
-            {
-               UI.println("After");
-               String key = entry.getKey();
-               Book value = entry.getValue();
-               
-               value.placeholder();
-               
-               //UI.println(value.placeholder());
-            }
+      
         
         
         
@@ -128,15 +110,15 @@ public class BookReview{
     public void manageMouse (String action, double x, double y) {
         if(action.equals("clicked")) {
             
-            for (Map.Entry<String, Book> entry : bookMap.entrySet())
-            {
-               String key = entry.getKey();
-               Book value = entry.getValue();
-               if (value.onButton(x,y) == true) {
-                   value.placeholder();
-                }
-               //UI.println(value.placeholder());
-            }
+            // for (Map.Entry<String, Book> entry : bookMap.entrySet())
+            // {
+               // String key = entry.getKey();
+               // Book value = entry.getValue();
+               // if (value.onButton(x,y) == true) {
+                   // value.placeholder();
+                // }
+               // //UI.println(value.placeholder());
+            // }
         }
     }
 }
