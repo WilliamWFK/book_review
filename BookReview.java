@@ -29,7 +29,7 @@ public class BookReview{
      * Constructor for objects of class BookReview 
      */
     public BookReview(){
-        UI.initialise();
+        main();
     
     
     }
@@ -39,12 +39,12 @@ public class BookReview{
      * Main routine
      *
      */
-    public static void main(){
+    public void main(){
         
-        BookReview br = new BookReview();
-        UI.addButton("Quit", UI::quit); 
-        UI.addButton("Add Book", br::addBook);
-        UI.setMouseListener(br::manageMouse);
+        //BookReview br = new BookReview();
+        
+        UI.setMouseListener(this::manageMouse);
+        mainMenu();
         UI.setDivider(1);
         Button like = new Button(true);
         Button dislike = new Button(false);
@@ -54,7 +54,13 @@ public class BookReview{
         // UI.addTextField("Book Genre", br::setBookGenre);
         // UI.setKeyListener(br::test);
     }
-    
+    public void mainMenu(){
+        UI.addButton("Quit", UI::quit); 
+        UI.addButton("Add Book", this::addBook);
+        UI.addButton("Search Book", UI::quit);
+        UI.addButton("Rate Book", UI::quit);
+        UI.addButton("Recommend Book", UI::quit);
+    }
    
     
     /**
@@ -63,14 +69,14 @@ public class BookReview{
      */
     
     public void addBook(){
-       
+        UI.initialize;
         setBookName(UI.askString("Enter the title of the book: "));
         setBookAuthor(UI.askString("Enter the author of the book: "));
         setBookGenre(UI.askString("Enter the genre of the book: "));
         //books.add(new Book(bookName, bookAuthor, bookGenre))
         Book book = new Book(bookName, bookAuthor, bookGenre, bookTotal);
         bookMap.put(bookName, book);
-        UI.println(bookName + "has been sucessfully added!");
+        UI.println(bookName + " has been sucessfully added!");
         bookTotal += 1;
       
         
