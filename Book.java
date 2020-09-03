@@ -23,11 +23,11 @@ public class Book{
     /**
      * Constructor for objects of class Book 
      */
-    public Book(String name,String author,String genre){
+    public Book(String name,String author,String genre, int bookNumber){
         this.bookName = name;
         this.bookAuthor = author;
         this.bookGenre = genre;
-        
+        this.number = bookNumber;
     }
     
    
