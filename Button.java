@@ -57,12 +57,16 @@ public class Button{
     
     public boolean onButton(double x,double y) {
         
-        // if (x >= this.posX && x <= this.posX + WIDTH &&
-        // y >= this.posY && y <= this.posY+HEIGHT) {
-            // return true;
-        // } else {
-               return false;
-        // }
+        if (x >= this.posX && x <= this.posX + WIDTH &&
+        y >= this.posY && y <= this.posY+WIDTH) {
+            return true;
+        } else {
+              return false;
+        }
+    }
+    
+    public void placeholder(){
+        UI.println(this.posX);
     }
 }
 
