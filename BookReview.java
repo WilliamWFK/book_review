@@ -79,7 +79,7 @@ public class BookReview{
     
     public void addBook() { 
         UI.initialise(); 
-        UI.setDivider(1);
+        UI.setDivider(2);
         setBookName(UI.askString("Enter the title of the book: "));
         setBookAuthor(UI.askString("Enter the author of the book: "));
         setBookGenre(UI.askString("Enter the genre of the book: "));
@@ -205,6 +205,7 @@ public class BookReview{
                 dislike.placeholder();
             }
         }
+        return true;
     }
 }
 
