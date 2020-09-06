@@ -137,7 +137,8 @@ public class BookReview {
         }
         valid = false;
         while (!valid) {
-            setBookGenre(UI.askString("What is the primary genre of this book: ").strip());
+            setBookGenre(UI.askString(
+            "What is the primary genre of this book: ").strip());
             if (bookGenre.length() == 0) {
                 UI.println("Please enter a book genre");
             } else {
@@ -147,10 +148,11 @@ public class BookReview {
         Book book = new Book(bookName, titleCase(bookAuthor),
                             titleCase(bookGenre));
         bookMap.put(bookName.toLowerCase(), book);
-        UI.clearText();UI.println(bookName + " has been sucessfully added!");
+        UI.clearText();
+        UI.println(bookName + " has been sucessfully added!");
         bookTotal += 1;
         mainMenu();
-        UI.println(bookName + " has been sucessfully added!");  
+        UI.println(bookName + " has been sucessfully added!");
     }
      /**
      *  Starts the process of rating books.
@@ -233,7 +235,7 @@ public class BookReview {
         boolean check = false;
         while (!check) {
             searchString = UI.askString(
-                    "Enter the title of the book to delete: ").toLowerCase().strip();
+            "Enter the title of the book to delete: ").toLowerCase().strip();
             if (checkBook(searchString)) {
                 check = true;
                 bookMap.remove(searchString);
@@ -269,7 +271,6 @@ public class BookReview {
                            bookRecommend.add(bookMap.get(book).getName());
                            bookRecommend.add("author");
                            recommendedBooks.add(bookRecommend);
-                           
                            bookRecommend = new ArrayList<String>();
                         }
                         if (bookMap.get(likedBook).getGenre().equals(
@@ -278,7 +279,6 @@ public class BookReview {
                            bookRecommend.add(bookMap.get(book).getName());
                            bookRecommend.add("genre");
                            recommendedBooks.add(bookRecommend);
-                           
                            bookRecommend = new ArrayList<String>();
                         }
                     }
@@ -391,7 +391,8 @@ public class BookReview {
      *  @param  X  x-value of mouse
      *  @param  Y  y-value of mouse
      */
-    public void mouseRate(final String ACTION, final double X, final  double Y) {
+    public void mouseRate(
+        final String ACTION, final double X, final  double Y) {
         if (ACTION.equals("clicked") && !rated) {
             if (like.onButton(X, Y)) {
                 endRateBook(true);
