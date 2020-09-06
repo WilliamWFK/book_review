@@ -11,79 +11,83 @@ import java.util.*;
 import java.io.*;
 import java.awt.Color;
 
-/** <description of class Button>
+/**
+ *  Button class that detects whether book has been liked/disliked.
+ *
  */
-public class Button{
-    private double posX, posY;
-    private final double WIDTH = 200;
-    private final double POSITIONY = 100;
-    private final double LIKEY = 75;
-    private final double DISLIKEY = 350;
-    
-    private boolean like;
-    private String button,image;
-    /** takes in a boolean
-     *  true = green button
-     *  false = red button
+public class Button {
+    /**
+     *  Position of this button.
      */
-    public Button(boolean likeValue){
-        like = likeValue;
+    private double posX, posY;
+    /**
+     * Width used in making square buttons.
+     */
+    private final double WIDTH = 200;
+    /**
+     * Y position of button to be set.
+     */
+    private final double POSITIONY = 100;
+    /**
+     * X position of Like button.
+     */
+    private final double LIKEY = 75;
+    /**
+     * Y position of dislike button.
+     */
+    private final double DISLIKEY = 350;
+    /**
+     * Boolean storing whether button is a like or dislike.
+     */
+    private boolean like;
+    /**
+     * String storing directory of button image.
+     */
+    private String image;
+    /** Constructor of button class.
+     *  @param  LIKE_VALUE  Which state the button is, true = like
+     */
+    public Button(final boolean LIKE_VALUE) {
+        like = LIKE_VALUE;
         buttonInitialize(like);
         drawButton();
     }
-    public void buttonInitialize(boolean likeValue) {
-        if (likeValue == true) {
+    /**
+     *  Sets-up the button.
+     *  @param  LIKE_VALUE  Which state the button is, true = like
+     */
+    public void buttonInitialize(final boolean LIKE_VALUE) {
+        if (LIKE_VALUE) {
             UI.setColor(Color.green);
             this.posX = LIKEY;
             this.posY = POSITIONY;
             this.image = "images/thumbup.png";
         }
-        if (likeValue == false) {
+        if (!LIKE_VALUE) {
             UI.setColor(Color.red);
             this.posX = DISLIKEY;
             this.posY = POSITIONY;
             this.image = "images/thumbdown.png";
         }
-        
     }
-    public void drawButton(){
+    /**
+     * Draws button on canvas.
+     */
+    public void drawButton() {
         buttonInitialize(like);
         UI.setLineWidth(3);
-        UI.drawRect(this.posX,this.posY,WIDTH,WIDTH);
-        UI.drawImage(this.image, this.posX,this.posY, WIDTH, WIDTH);
+        UI.drawRect(this.posX, this.posY, WIDTH, WIDTH);
+        UI.drawImage(this.image, this.posX, this.posY, WIDTH, WIDTH);
     }
-    // public void setLike() {
-        // UI.setColor(Color.green);
-        // this.posX = POSITIONY;
-        // this.posY = LIKEY;
-        // this.image = "images/thumbup.png";
-    // }
-    // public void setDislike(){
-        // UI.setColor(Color.red);
-        // this.posX = POSITIONY;
-        // this.posY = DISLIKEY;
-        // this.image = "images/thumbdown.png";
-    // }
-
-    public static void main(String[] args){
-        
-    }
-    
-    public boolean onButton(double x,double y) {
-        
-        if (x >= this.posX && x <= this.posX + WIDTH &&
-        y >= this.posY && y <= this.posY+WIDTH) {
-            return true;
-        } else {
-              return false;
-        }
-    }
-    
-    public void placeholder(){
-        UI.println(this.posX);
-        UI.println(this.posY);
-        UI.println(like);
-        
+    /**
+     *  Checks to see if mouse is on button.
+     *  @param X x-positon of mouse
+     *  @param Y y-positoon of mouse
+     *  @return Whether or not mouse is on button, true = yes
+     */
+    public boolean onButton(final double X, final double Y) {
+        return (X >= this.posX && X <= this.posX + WIDTH
+        && Y >= this.posY && Y <= this.posY + WIDTH);
     }
 }
 

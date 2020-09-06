@@ -1,4 +1,3 @@
- 
 /* Based on the VUW ecs100 template
  *
  */
@@ -11,166 +10,171 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-/** 
- * Write a description of class BookReview here.
+/**
+ *  Main class of BookReview.
  *
- * @author (your name)
- * @version (a version number or a date)
+ *  @author William Kho
+ *  @version 6/09/2020
  */
-public class BookReview{
-    
-    public String bookAuthor,bookName,bookGenre; // variables for book name
-    ArrayList<String> likedBooks = new ArrayList<String>();
-    //ArrayList<String> unratedBooks = new ArrayList<String>();
-    ArrayList<String> dislikedBooks = new ArrayList<String>();
-    
-    //  Two dimensional ArrayList to store recommendations
-    ArrayList<ArrayList<String>> recommendedBooks = 
+public class BookReview {
+    /**
+     *  Variables used in creating bookObject.
+     */
+    private String bookAuthor, bookName, bookGenre;
+    /**
+     *  ArrayLists storing liked books.
+     */
+    private ArrayList<String> likedBooks = new ArrayList<String>();
+    /**
+     *  ArrayLists storing disliked books.
+     */
+    private ArrayList<String> dislikedBooks = new ArrayList<String>();
+    /**
+     *  2D Array list storing book recommendations, held within are the pairings
+     *  (First book name, Second book name, trait in common).
+     *  i.e (Mistborn, Stormlight, author)
+     */
+    private ArrayList<ArrayList<String>> recommendedBooks =
             new ArrayList<ArrayList<String>>();
-    
-    HashMap<String, Book> bookMap = new HashMap<String,Book>();
-    
+    /**
+     *  Hashmap storing book objects with lowercase book titles as the key.
+     */
+    private HashMap<String, Book> bookMap = new HashMap<String, Book>();
+    /**
+     *  Variable used to store total amount of books for mainMenu logic.
+     */
     private int bookTotal = 0;
+    /**
+     *  Boolean used in mouseRate logic.
+     */
     private boolean rated;
+    /**
+     *  Variable used to store book titles input by user, primarily used
+     *  to be parsed in bookMap.
+     */
     private String searchString;
-    
-    Button like = new Button(true);
-    Button dislike = new Button(false);
-    
-    
     /**
-     * Constructor for objects of class BookReview 
+     *  Creates a new button class that has the like attribute.
      */
-    public BookReview(){
+    private Button like = new Button(true);
+    /**
+     *  Creates a new button class that has the dislike attribute.
+     */
+    private Button dislike = new Button(false);
+    /**
+     *  Font size used in question of startRateBook().
+     */
+    private final double FONT = 30;
+    /**
+     *  Position of text in question of startRateBook().
+     */
+    private final double POSITION = 75;
+    /**
+     * Constructor for objects of class BookReview.
+     */
+    public BookReview() {
         main();
-    
-    
     }
-
-
     /**
-     * Main routine
-     *
+     * Main routine.
      */
-    public void main(){
-        
+    public void main() {
         mainMenu();
         UI.setDivider(1);
         UI.clearGraphics();
-        UI.println("Welcome to book recommender.\nTo start, please add a book.");
-        
+        UI.println(("Welcome to book recommender.\n"
+                  + "To start, please add a book."));
     }
-    
     /**
      *  Refreshes the UI by calling refreshMenu() and then adds buttons
      *  If there are less than 1 books added, the user
      *  cannot possibly delete, search, rate or recommend
      *  so the menu does not add those buttons.
      */
-    public void mainMenu(){
+    public void mainMenu() {
         refreshMenu();
-        
         UI.addButton("Add Book", this::addBook);
-        if(bookTotal <= 0 != true) {
+        if (bookTotal > 0) {
             UI.addButton("Delete Book", this::deleteBook);
             UI.addButton("Search Book", this::searchBook);
             UI.addButton("Rate Book", this::startRateBook);
             UI.addButton("Recommend Book", this::recommendBook);
         }
-        
     }
     /**
      *  Refreshes the UI and adds the quit button.
      */
-    public void refreshMenu(){
-        UI.initialise(); 
+    public void refreshMenu() {
+        UI.initialise();
         UI.addButton("Quit", UI::quit);
         UI.setDivider(1);
     }
-    
     /**
      *  Sets the name, author and genre of each book
      *  and then creates a new book object to add into bookMap.
-     * 
      */
-    
-    public void addBook() { 
+    public void addBook() {
         refreshMenu();
         boolean valid = false;
-        
-        while (valid != true) {
+        while (!valid) {
             setBookName(UI.askString("Enter the title of the book: "));
             if (bookName.length() == 0) {
                 UI.println("Please enter a book name");
-            }
-            else if (bookMap.containsKey(bookName.toLowerCase())) {
+            } else if (bookMap.containsKey(bookName.toLowerCase())) {
                 UI.println("Please enter a unique book name.");
-            }
-            else {
-                valid = true;  
+            } else {
+                valid = true;
             }
         }
-        
         valid = false;
-        while (valid != true) {
-            setBookAuthor(UI.askString("Enter the author of the book: "));
+        while (!valid) {
+            setBookAuthor(UI.askString("Who wrote this book?: "));
             if (bookAuthor.length() == 0) {
                 UI.println("Please enter a book author");
-            }
-            else {
-                valid = true;  
+            } else {
+                valid = true;
             }
         }
-        
         valid = false;
-        while (valid != true) {
-            setBookGenre(UI.askString("Enter the genre of the book: "));
+        while (!valid) {
+            setBookGenre(UI.askString("What is the primary genre of this book: "));
             if (bookGenre.length() == 0) {
                 UI.println("Please enter a book genre");
-            }
-            else {
-                valid = true;  
+            } else {
+                valid = true;
             }
         }
-        
-        
-        
-        
-        Book book = new Book(bookName, titleCase(bookAuthor), titleCase(bookGenre));
-        //unratedBooks.add(bookName.toLowerCase());
+        Book book = new Book(bookName, titleCase(bookAuthor),
+                            titleCase(bookGenre));
         bookMap.put(bookName.toLowerCase(), book);
-        UI.clearText();
-        UI.println(bookName + " has been sucessfully added!");
+        UI.clearText();UI.println(bookName + " has been sucessfully added!");
         bookTotal += 1;
-        
         mainMenu();
-
+        UI.println(bookName + " has been sucessfully added!");  
     }
-    /**
-     *  Starts the process of rating books. 
-     *  Starts off by asking the user for a book to rate. If the 
+     /**
+     *  Starts the process of rating books.
+     *  Starts off by asking the user for a book to rate. If the
      *  book is found in the hashmap the bookName, bookAuthor and bookGenre
      *  will be set, else it will retry.
-     *  
+     *
      *  rated will then be set to false in order to activate the condition
      *  used in mouseRate().
      *  Calls the drawButton() method to display the buttons as well as
      *  draws the question onto the canvas.
-     *  
      */
     public void startRateBook() {
         refreshMenu();
-        
         boolean check = false;
-        while (check == false) {
-            searchString = UI.askString("Enter the title of the book to search: ").toLowerCase();
-            if(checkBook(searchString) == true) {
+        while (!check) {
+            searchString = UI.askString(
+            "Enter the title of the book to search: ").toLowerCase();
+            if (checkBook(searchString)) {
                 setBookName(bookMap.get(searchString).getName());
                 setBookAuthor(bookMap.get(searchString).getAuthor());
                 setBookGenre(bookMap.get(searchString).getGenre());
                 check = true;
-            }
-            else{
+            } else {
                 UI.println("That book isn't in the database.");
             }
         }
@@ -179,84 +183,70 @@ public class BookReview{
         UI.setDivider(0);
         like.drawButton();
         dislike.drawButton();
-        
-        UI.setFontSize(30);
+        UI.setFontSize(FONT);
         UI.setColor(Color.black);
-        UI.drawString(("Did you like '" + bookName + "'?"),75,75); // if longer than 32 bugs//
-        
-        
+        UI.drawString(("Did you like '" + bookName + "'?"), POSITION, POSITION);
     }
     /**
      *  Ends the process of rating books.
      *  Based on param will either add bookname to likedBooks
      *  or dislikedBooks and delete the entry in the opposite
      *  ArrayList if possible.
-     *  
-     *  s
-     *  @param  liked  boolean storing whether book was liked, true = yes & viceversa
+     *
+     *  @param  LIKED  boolean storing whether book was liked,
+     *  true = yes & viceversa
      */
-    public void endRateBook(boolean liked) {
+    public void endRateBook(final boolean LIKED) {
         UI.clearGraphics();
         refreshMenu();
-        
-        if (liked == true) {
-            
-            if(likedBooks.contains(searchString) != true) {
+        if (LIKED) {
+            if (!likedBooks.contains(searchString)) {
                 likedBooks.add(searchString);
                 //unratedBooks.remove(searchString);
-                
             }
-            if(dislikedBooks.contains(searchString) == true) {
+            if (dislikedBooks.contains(searchString)) {
                     dislikedBooks.remove(searchString);
                 }
         }
-        
-        if (liked == false) {
-            if(dislikedBooks.contains(searchString) != true) {
+        if (!LIKED) {
+            if (!dislikedBooks.contains(searchString)) {
                 dislikedBooks.add(searchString);
                 //unratedBooks.remove(searchString);
             }
-            if(likedBooks.contains(searchString) == true) {
+            if (likedBooks.contains(searchString)) {
                     likedBooks.remove(searchString);
                 }
         }
-        
         UI.println(likedBooks);
         UI.println(dislikedBooks);
         UI.println(bookName + " has been sucessfully rated");
         mainMenu();
     }
-    
     /**
      *  Deletes a book from bookMap.
      *  Will ask the user for a book to delete which is
      *  then ran through checkBook(). If returned true
      *  will delete the book from bookMap and reduce bookTotal by 1.
-     *  
      */
     public void deleteBook() {
         refreshMenu();
-        
         boolean check = false;
-        while (check == false) {
-            searchString = UI.askString("Enter the title of the book to delete: ").toLowerCase();
-            if(checkBook(searchString) == true) {
+        while (!check) {
+            searchString = UI.askString(
+                    "Enter the title of the book to delete: ").toLowerCase();
+            if (checkBook(searchString)) {
                 check = true;
                 bookMap.remove(searchString);
                 likedBooks.remove(searchString);
                 dislikedBooks.remove(searchString);
                 bookTotal -= 1;
-            }
-            else{
+            } else {
                 UI.println("That book isn't in the database.");
             }
-            
         }
-        
         mainMenu();
         UI.println((searchString + " has been deleted."));
     }
-    
     /**
      *  Recommends a book based on books found in likedBooks.
      */
@@ -266,75 +256,63 @@ public class BookReview{
        bookRecommend.clear();
        // loop through all books, checking to see if author or genre is a match
        if (likedBooks.size() == 0) {
-           UI.println("Please like a book before asking for a recommendation!");
-        }
-       else{
-            for(String likedBook : likedBooks) {
-               
-               for (Map.Entry<String, Book> entry : bookMap.entrySet())
-                {
+           UI.println("Please positively rate a book first!");
+        } else {
+            for (String likedBook : likedBooks) {
+               for (Map.Entry<String, Book> entry : bookMap.entrySet()) {
                    String book = entry.getKey();
-                   
-                   if (dislikedBooks.contains(book) != true && 
-                        likedBooks.contains(book) != true) {
-                       
-                       
+                   if (!dislikedBooks.contains(book)
+                    && !likedBooks.contains(book)) {
                        if (bookMap.get(likedBook).getAuthor().equals(
-                            bookMap.get(book).getAuthor()) == true) {
-                           
+                            bookMap.get(book).getAuthor())) {
                            bookRecommend.add(bookMap.get(likedBook).getName());
                            bookRecommend.add(bookMap.get(book).getName());
                            bookRecommend.add("author");
                            recommendedBooks.add(bookRecommend);
-                           
-                           
                            UI.println("Added author");
                            bookRecommend = new ArrayList<String>();
-                        } 
+                        }
                         if (bookMap.get(likedBook).getGenre().equals(
-                            bookMap.get(book).getGenre()) == true) {
-                           
+                            bookMap.get(book).getGenre())) {
                            bookRecommend.add(bookMap.get(likedBook).getName());
                            bookRecommend.add(bookMap.get(book).getName());
                            bookRecommend.add("genre");
                            recommendedBooks.add(bookRecommend);
-                           
-                           
                            UI.println("Added genre");
                            bookRecommend = new ArrayList<String>();
-                        } 
+                        }
                     }
-                    
                 }
             }
-        
            if (recommendedBooks.size() > 0) {
-           int randNum = (int) (Math.random() * (double)(recommendedBooks.size()));
-           UI.println(("Because you liked " + recommendedBooks.get(randNum).get(0)
-                        + ", you might enjoy " + recommendedBooks.get(randNum).get(1)
-                        + " as they have the same " + recommendedBooks.get(randNum).get(2)));
-            }
-            else {
-                UI.println("We cannot recommend anything as there are not enough non-rated books.");
+           int randNum = (int) (Math.random()
+                  * (double) (recommendedBooks.size()));
+           UI.println(("Because you liked "
+                        + recommendedBooks.get(randNum).get(0)
+                        + ", you might enjoy "
+                        + recommendedBooks.get(randNum).get(1)
+                        + " as they have the same "
+                        + recommendedBooks.get(randNum).get(2)));
+            } else {
+                UI.println("We cannot recommend anything as there are"
+                 + "not enough non-rated books.");
             }
         }
     }
-    
     /**
-     *  Converts a string into Title Case
+     *  Converts a string into Title Case.
      *  Credit to https://www.baeldung.com/java-string-title-case
-     *  
-     *  @param text text to be converted
+     *
+     *  @param TEXT text to be converted
+     *  @return  text in TitleCase
      */
-    public String titleCase(String text){
-        if (text == null || text.isEmpty()) {
-            return text;
+    public String titleCase(final String TEXT) {
+        if (TEXT == null || TEXT.isEmpty()) {
+            return TEXT;
         }
-     
         StringBuilder converted = new StringBuilder();
-     
         boolean convertNext = true;
-        for (char ch : text.toCharArray()) {
+        for (char ch : TEXT.toCharArray()) {
             if (Character.isSpaceChar(ch)) {
                 convertNext = true;
             } else if (convertNext) {
@@ -345,102 +323,83 @@ public class BookReview{
             }
             converted.append(ch);
         }
-     
         return converted.toString();
     }
-    /**
-     * 
-     */
-    public boolean checkString(String text){
-        return true;
-    }
-    /**
-     *  Searches a book from bookMap
-     *  
-     *  
+     /**
+     *  Searches a book from bookMap.
+     *
      */
     public void searchBook() {
         refreshMenu();
         boolean check = false;
-        while (check  != true) {
-            
-            searchString = UI.askString("Enter the title of the book to rate: ").toLowerCase();
-            if(checkBook(searchString) == true) {
+        while (!check) {
+            searchString = UI.askString(
+            "Enter the title of the book to rate: ").toLowerCase();
+            if (checkBook(searchString)) {
                 check = true;
-                
-            }
-            else{
+            } else {
                 UI.println("That book isn't in the database.");
             }
-            }
+        }
         setBookName(bookMap.get(searchString).getName());
         setBookAuthor(bookMap.get(searchString).getAuthor());
         setBookGenre(bookMap.get(searchString).getGenre());
-        
         mainMenu();
-        UI.println((bookName + " by " + bookAuthor + " is a " + bookGenre + " book."));
-    }
-    /**
-     *  Checks to see if book exists
-     *  @param  searchTerm  searchTerm to be checked
-     */
-    public boolean checkBook(String searchTerm){
-        if(bookMap.containsKey(searchTerm.toLowerCase())){
-            return true;
+        UI.println((
+        bookName + " by " + bookAuthor + " is a " + bookGenre + " book."));
+        if (likedBooks.contains(searchString)) {
+            UI.println("You liked this book.");
         }
-        else{
-            return false;
+        if (dislikedBooks.contains(searchString)) {
+            UI.println("You disliked this book.");
         }
     }
-            
     /**
-     *  Sets bookAuthor
-     *  @param author Name of author
+     *  Checks to see if book exists.
+     *  @param  SEARCH_TERM  searchTerm to be checked
+     *  @return  true if bookMap does contain SEARCHTERM
      */
-    public void setBookAuthor(String author){
-        this.bookAuthor = author;
-        
+    public boolean checkBook(final String SEARCH_TERM) {
+        return bookMap.containsKey(SEARCH_TERM.toLowerCase());
     }
-    
-    /**
-     *  Sets bookName
-     *  @param name Name of book
+     /**
+     *  Sets bookAuthor.
+     *  @param AUTHOR Name of author
      */
-    public void setBookName(String name){
-        this.bookName = name;
-        
+    public void setBookAuthor(final String AUTHOR) {
+        this.bookAuthor = AUTHOR;
     }
-    
     /**
-     *  Set bookGenre
-     *  @param  genre  Genre of book, parse in a single genre only
+     *  Sets bookName.
+     *  @param NAME Name of book
      */
-    public void setBookGenre(String genre){
-        this.bookGenre = genre;
-        
+    public void setBookName(final String NAME) {
+        this.bookName = NAME;
     }
-    
     /**
-     *  Mouse manager used in rating books
-     *  
-     *  @param  action  What action mouse has performed, i.e clicked, released
-     *  @param  x  x-value of mouse
-     *  @param  y  y-value of mouse
+     *  Set bookGenre.
+     *  @param  GENRE  Genre of book, parse in a single genre only
      */
-    public void mouseRate (String action, double x, double y) {
-        
-        if(action.equals("clicked") && rated != true) {
-            if(like.onButton(x,y) == true) {
+    public void setBookGenre(final String GENRE) {
+        this.bookGenre = GENRE;
+    }
+     /**
+     *  Mouse manager used in rating books.
+     *
+     *  @param  ACTION  What action mouse has performed, i.e clicked, released
+     *  @param  X  x-value of mouse
+     *  @param  Y  y-value of mouse
+     */
+    public void mouseRate(final String ACTION, final double X, final  double Y) {
+        if (ACTION.equals("clicked") && !rated) {
+            if (like.onButton(X, Y)) {
                 endRateBook(true);
                 rated = true;
             }
-            if(dislike.onButton(x,y) == true ) {
+            if (dislike.onButton(X, Y)) {
                 endRateBook(false);
                 rated = true;
             }
         }
-        
     }
-    
 }
-

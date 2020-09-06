@@ -1,17 +1,16 @@
 #BlueJ class context
 comment0.target=Button
-comment0.text=\ <description\ of\ class\ Button>\r\n
-comment1.params=likeValue
+comment0.text=\r\n\ \ Button\ class\ that\ detects\ whether\ book\ has\ been\ liked/disliked.\r\n\r\n
+comment1.params=LIKE_VALUE
 comment1.target=Button(boolean)
-comment1.text=\ takes\ in\ a\ boolean\r\n\ \ true\ \=\ green\ button\r\n\ \ false\ \=\ red\ button\r\n
-comment2.params=likeValue
+comment1.text=\ Constructor\ of\ button\ class.\r\n\ \ @param\ \ LIKE_VALUE\ \ Which\ state\ the\ button\ is,\ true\ \=\ like\r\n
+comment2.params=LIKE_VALUE
 comment2.target=void\ buttonInitialize(boolean)
+comment2.text=\r\n\ \ Sets-up\ the\ button.\r\n\ \ @param\ \ LIKE_VALUE\ \ Which\ state\ the\ button\ is,\ true\ \=\ like\r\n
 comment3.params=
 comment3.target=void\ drawButton()
-comment4.params=args
-comment4.target=void\ main(java.lang.String[])
-comment5.params=x\ y
-comment5.target=boolean\ onButton(double,\ double)
-comment6.params=
-comment6.target=void\ placeholder()
-numComments=7
+comment3.text=\r\n\ Draws\ button\ on\ canvas.\r\n
+comment4.params=X\ Y
+comment4.target=boolean\ onButton(double,\ double)
+comment4.text=\r\n\ \ Checks\ to\ see\ if\ mouse\ is\ on\ button.\r\n\ \ @param\ X\ x-positon\ of\ mouse\r\n\ \ @param\ Y\ y-positoon\ of\ mouse\r\n\ \ @return\ Whether\ or\ not\ mouse\ is\ on\ button,\ true\ \=\ yes\r\n
+numComments=5

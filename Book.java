@@ -1,61 +1,52 @@
-
  /* Based on the VUW ecs100 template
  *
  */
 
-
 import ecs100.*;
 import java.util.*;
 import java.io.*;
-import java.awt.Color;
 
-/** 
- * Write a description of class Book here.
+/**
+ * Book class storing bookName, bookAuthor and bookGenre.
  *
- * @author (your name)
- * @version (a version number or a date)
  */
-public class Book{
-    // fields for book details
-    String bookGenre,bookAuthor,bookName; 
-    int number;
-
+public class Book {
     /**
-     * Constructor for objects of class Book 
-     * 
-     *  @param  name  Name
+     * Strings containing book information.
      */
-    public Book(String name,String author,String genre){
-        this.bookName = name;
-        this.bookAuthor = author;
-        this.bookGenre = genre;
-        
-    }
-    
+    private String bookGenre, bookAuthor, bookName;
     /**
-     * 
+     * Constructor for objects of class Book.
+     *
+     *  @param  NAME  name of book
+     *  @param  AUTHOR  author of book
+     *  @param  GENRE  genre of book, should be single genre.
+     */
+    public Book(final String NAME, final String AUTHOR, final String GENRE) {
+        this.bookName = NAME;
+        this.bookAuthor = AUTHOR;
+        this.bookGenre = GENRE;
+    }
+    /**
+     * returns name of book.
+     * @return  name of book
      */
     public String getName() {
         return this.bookName;
     }
     /**
-     * 
+     *  returns author.
+     *  @return author
      */
     public String getAuthor() {
         return this.bookAuthor;
     }
     /**
-     * 
+     *  returns genre.
+     *  @return genre
      */
     public String getGenre() {
         return this.bookGenre;
     }
-   
-    
-    
-
-
-    
-
 }
 

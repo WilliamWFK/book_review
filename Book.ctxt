@@ -1,16 +1,16 @@
 #BlueJ class context
 comment0.target=Book
-comment0.text=\ \r\n\ Write\ a\ description\ of\ class\ Book\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
-comment1.params=name\ author\ genre
+comment0.text=\r\n\ Book\ class\ storing\ bookName,\ bookAuthor\ and\ bookGenre.\r\n\r\n
+comment1.params=NAME\ AUTHOR\ GENRE
 comment1.target=Book(java.lang.String,\ java.lang.String,\ java.lang.String)
-comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Book\ \r\n\ \r\n\ \ @param\ \ name\ \ Name\r\n
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Book.\r\n\r\n\ \ @param\ \ NAME\ \ name\ of\ book\r\n\ \ @param\ \ AUTHOR\ \ author\ of\ book\r\n\ \ @param\ \ GENRE\ \ genre\ of\ book,\ should\ be\ single\ genre.\r\n
 comment2.params=
 comment2.target=java.lang.String\ getName()
-comment2.text=\r\n\ \r\n
+comment2.text=\r\n\ returns\ name\ of\ book.\r\n\ @return\ \ name\ of\ book\r\n
 comment3.params=
 comment3.target=java.lang.String\ getAuthor()
-comment3.text=\r\n\ \r\n
+comment3.text=\r\n\ \ returns\ author.\r\n\ \ @return\ author\r\n
 comment4.params=
 comment4.target=java.lang.String\ getGenre()
-comment4.text=\r\n\ \r\n
+comment4.text=\r\n\ \ returns\ genre.\r\n\ \ @return\ genre\r\n
 numComments=5
