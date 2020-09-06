@@ -1,49 +1,52 @@
-/* Based on the VUW ecs100 template
+ /* Based on the VUW ecs100 template
  *
  */
-
 
 import ecs100.*;
 import java.util.*;
 import java.io.*;
-import java.awt.Color;
 
-/** 
- * Write a description of class Book here.
+/**
+ * Book class storing bookName, bookAuthor and bookGenre.
  *
- * @author (your name)
- * @version (a version number or a date)
  */
-public class Book{
-    // fields for book details
-    String bookGenre,bookAuthor,bookName; 
-    public static final double HEIGHT =75;
-    public static final double WIDTH = 75;
-    public static final double WORDHEIGHT = 20;
-    
-    public static double x, y;
-    
+public class Book {
     /**
-     * Constructor for objects of class Book 
+     * Strings containing book information.
      */
-    public Book(String name,String author,String genre){
-        bookName = name;
-        bookAuthor = author;
-        bookGenre = genre;
+    private String bookGenre, bookAuthor, bookName;
+    /**
+     * Constructor for objects of class Book.
+     *
+     *  @param  NAME  name of book
+     *  @param  AUTHOR  author of book
+     *  @param  GENRE  genre of book, should be single genre.
+     */
+    public Book(final String NAME, final String AUTHOR, final String GENRE) {
+        this.bookName = NAME;
+        this.bookAuthor = AUTHOR;
+        this.bookGenre = GENRE;
     }
-    
-    public void draw(double xSpacing,double ySpacing) {
-        UI.setColor(Color.black);
-        UI.setLineWidth(3);
-        UI.drawRect(HEIGHT+xSpacing,HEIGHT+ySpacing,HEIGHT,HEIGHT);
-        // UI.drawRect(xSpacing , HEIGHT + xSpacing,ySpacing,WIDTH + ySpacing);
-        UI.drawString(bookName, HEIGHT+xSpacing+10, HEIGHT+ySpacing+WORDHEIGHT);
-        UI.drawString(bookAuthor, HEIGHT+xSpacing+10, HEIGHT+ySpacing+WORDHEIGHT*2);
-       
+    /**
+     * returns name of book.
+     * @return  name of book
+     */
+    public String getName() {
+        return this.bookName;
     }
-
-
-    
-
+    /**
+     *  returns author.
+     *  @return author
+     */
+    public String getAuthor() {
+        return this.bookAuthor;
+    }
+    /**
+     *  returns genre.
+     *  @return genre
+     */
+    public String getGenre() {
+        return this.bookGenre;
+    }
 }
 
