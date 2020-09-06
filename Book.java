@@ -22,6 +22,8 @@ public class Book{
 
     /**
      * Constructor for objects of class Book 
+     * 
+     *  @param  name  Name
      */
     public Book(String name,String author,String genre){
         this.bookName = name;
