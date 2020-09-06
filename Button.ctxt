@@ -1,19 +1,17 @@
 #BlueJ class context
 comment0.target=Button
 comment0.text=\ <description\ of\ class\ Button>\r\n
-comment1.params=like
+comment1.params=likeValue
 comment1.target=Button(boolean)
 comment1.text=\ takes\ in\ a\ boolean\r\n\ \ true\ \=\ green\ button\r\n\ \ false\ \=\ red\ button\r\n
-comment2.params=
-comment2.target=void\ drawButton()
+comment2.params=likeValue
+comment2.target=void\ buttonInitialize(boolean)
 comment3.params=
-comment3.target=void\ setLike()
-comment4.params=
-comment4.target=void\ setDislike()
-comment5.params=args
-comment5.target=void\ main(java.lang.String[])
-comment6.params=x\ y
-comment6.target=boolean\ onButton(double,\ double)
-comment7.params=
-comment7.target=void\ placeholder()
-numComments=8
+comment3.target=void\ drawButton()
+comment4.params=args
+comment4.target=void\ main(java.lang.String[])
+comment5.params=x\ y
+comment5.target=boolean\ onButton(double,\ double)
+comment6.params=
+comment6.target=void\ placeholder()
+numComments=7

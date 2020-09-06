@@ -30,6 +30,24 @@ public class Book{
         
     }
     
+    /**
+     * 
+     */
+    public String getName() {
+        return this.bookName;
+    }
+    /**
+     * 
+     */
+    public String getAuthor() {
+        return this.bookAuthor;
+    }
+    /**
+     * 
+     */
+    public String getGenre() {
+        return this.bookGenre;
+    }
    
     
     
