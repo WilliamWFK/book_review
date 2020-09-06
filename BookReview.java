@@ -117,7 +117,7 @@ public class BookReview {
         refreshMenu();
         boolean valid = false;
         while (!valid) {
-            setBookName(UI.askString("Enter the title of the book: "));
+            setBookName(UI.askString("Enter the title of the book: ").strip());
             if (bookName.length() == 0) {
                 UI.println("Please enter a book name");
             } else if (bookMap.containsKey(bookName.toLowerCase())) {
@@ -128,7 +128,7 @@ public class BookReview {
         }
         valid = false;
         while (!valid) {
-            setBookAuthor(UI.askString("Who wrote this book?: "));
+            setBookAuthor(UI.askString("Who wrote this book?: ").strip());
             if (bookAuthor.length() == 0) {
                 UI.println("Please enter a book author");
             } else {
@@ -137,7 +137,7 @@ public class BookReview {
         }
         valid = false;
         while (!valid) {
-            setBookGenre(UI.askString("What is the primary genre of this book: "));
+            setBookGenre(UI.askString("What is the primary genre of this book: ").strip());
             if (bookGenre.length() == 0) {
                 UI.println("Please enter a book genre");
             } else {
@@ -168,7 +168,7 @@ public class BookReview {
         boolean check = false;
         while (!check) {
             searchString = UI.askString(
-            "Enter the title of the book to search: ").toLowerCase();
+            "Enter the title of the book to rate: ").toLowerCase().strip();
             if (checkBook(searchString)) {
                 setBookName(bookMap.get(searchString).getName());
                 setBookAuthor(bookMap.get(searchString).getAuthor());
@@ -219,8 +219,8 @@ public class BookReview {
         }
         UI.println(likedBooks);
         UI.println(dislikedBooks);
-        UI.println(bookName + " has been sucessfully rated");
         mainMenu();
+        UI.println(bookName + " has been sucessfully rated");
     }
     /**
      *  Deletes a book from bookMap.
@@ -233,7 +233,7 @@ public class BookReview {
         boolean check = false;
         while (!check) {
             searchString = UI.askString(
-                    "Enter the title of the book to delete: ").toLowerCase();
+                    "Enter the title of the book to delete: ").toLowerCase().strip();
             if (checkBook(searchString)) {
                 check = true;
                 bookMap.remove(searchString);
@@ -269,7 +269,7 @@ public class BookReview {
                            bookRecommend.add(bookMap.get(book).getName());
                            bookRecommend.add("author");
                            recommendedBooks.add(bookRecommend);
-                           UI.println("Added author");
+                           
                            bookRecommend = new ArrayList<String>();
                         }
                         if (bookMap.get(likedBook).getGenre().equals(
@@ -278,7 +278,7 @@ public class BookReview {
                            bookRecommend.add(bookMap.get(book).getName());
                            bookRecommend.add("genre");
                            recommendedBooks.add(bookRecommend);
-                           UI.println("Added genre");
+                           
                            bookRecommend = new ArrayList<String>();
                         }
                     }
@@ -292,10 +292,11 @@ public class BookReview {
                         + ", you might enjoy "
                         + recommendedBooks.get(randNum).get(1)
                         + " as they have the same "
-                        + recommendedBooks.get(randNum).get(2)));
+                        + recommendedBooks.get(randNum).get(2)
+                        + "."));
             } else {
-                UI.println("We cannot recommend anything as there are"
-                 + "not enough non-rated books.");
+                UI.println("We cannot recommend anything as there are "
+                 + "no unrated books that match with liked books.");
             }
         }
     }
@@ -334,7 +335,7 @@ public class BookReview {
         boolean check = false;
         while (!check) {
             searchString = UI.askString(
-            "Enter the title of the book to rate: ").toLowerCase();
+            "Enter the title of the book to search: ").toLowerCase().strip();
             if (checkBook(searchString)) {
                 check = true;
             } else {
